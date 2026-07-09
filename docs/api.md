@@ -43,6 +43,15 @@ Base URL: `http://localhost:8000`. Interactive docs at `/docs` (Swagger) when ru
 | GET | `/pantry/reminders` | Items expired / expiring within N days | Bearer |
 | DELETE | `/pantry/{id}` | Remove a pantry item | Bearer |
 
+### Phase 3 (selected backlog)
+| Method | Path | Purpose | Auth |
+|---|---|---|---|
+| POST | `/value` | Product → price/value analysis (cheapest, best health-per-rupee, percentile) | — |
+| POST | `/diet/plan` | Calorie/protein target → deterministic catalog basket + LLM narrative | — |
+
+`/ocr` also now returns a `language` hint (`en`/`hi`), and the parser reads Devanagari
+nutrition labels + numerals. OCR engine language is set via `OCR_LANG`.
+
 ## Examples
 
 ### POST /analyze

@@ -11,6 +11,7 @@ All configuration is env-driven (`.env`, see `.env.example`). The app boots with
 | `GEMINI_API_KEY` | *(empty)* | If unset, `/chat` uses the offline echo provider |
 | `GEMINI_MODEL` | `gemini-1.5-flash` | Gemini model id |
 | `OCR_PROVIDER` | `chained` | `chained` \| `paddle` \| `easyocr` \| `null` |
+| `OCR_LANG` | `en` | OCR engine language (`en` \| `hi` \| …); parser also reads Devanagari labels |
 | `DETECTOR_PROVIDER` | `yolo` | `yolo` \| `stub`. Compose default is `stub` (no heavy deps) |
 | `YOLO_WEIGHTS` | `yolov8n.pt` | Checkpoint path/name for Ultralytics |
 | `DETECTOR_CONF_THRESHOLD` | `0.25` | Min detection confidence to report a box |

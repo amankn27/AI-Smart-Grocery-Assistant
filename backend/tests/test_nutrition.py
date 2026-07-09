@@ -1,6 +1,6 @@
 """Unit tests for OCR-text → structured nutrition parsing. No model/network deps."""
 
-from app.services.nutrition import parse_nutrition
+from app.services.nutrition import detect_script, parse_nutrition
 
 
 def test_parses_clean_panel():
@@ -50,3 +50,23 @@ def test_missing_fields_are_absent_not_zero():
     facts = parse_nutrition("Energy 100 kcal")
     assert "protein_g" not in facts.fields
     assert facts.get("protein_g") is None
+
+
+def test_parses_hindi_devanagari_labels():
+    # ऊर्जा=energy, प्रोटीन=protein, शर्करा=sugar, सोडियम=sodium
+    text = "ऊर्जा 480 kcal\nप्रोटीन 7 g\nशर्करा 22 g\nसोडियम 450 mg"
+    facts = parse_nutrition(text)
+    assert facts.get("energy_kcal") == 480
+    assert facts.get("protein_g") == 7
+    assert facts.get("sugar_g") == 22
+    assert facts.get("sodium_mg") == 450
+
+
+def test_devanagari_numerals_are_normalized():
+    facts = parse_nutrition("प्रोटीन ७ g")   # ७ == 7
+    assert facts.get("protein_g") == 7
+
+
+def test_detect_script():
+    assert detect_script("Energy 100 kcal") == "en"
+    assert detect_script("ऊर्जा 100 kcal") == "hi"

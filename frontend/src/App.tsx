@@ -10,10 +10,11 @@ import { RecipeCard } from "./components/RecipeCard";
 import { AuthBar } from "./components/AuthBar";
 import { Pantry } from "./components/Pantry";
 import { Dashboard } from "./components/Dashboard";
+import { DietPlanner } from "./components/DietPlanner";
 import { api, getAuthToken, type DetectResponse, type OcrResponse, type Product } from "./api";
 import { useAuth } from "./auth";
 
-type Tab = "scan" | "pantry" | "dashboard";
+type Tab = "scan" | "planner" | "pantry" | "dashboard";
 
 export default function App() {
   const [tab, setTab] = useState<Tab>("scan");
@@ -32,7 +33,7 @@ export default function App() {
       </header>
 
       <nav className="mb-4 flex gap-2">
-        {(["scan", "pantry", "dashboard"] as Tab[]).map((t) => (
+        {(["scan", "planner", "pantry", "dashboard"] as Tab[]).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -46,6 +47,7 @@ export default function App() {
       </nav>
 
       {tab === "scan" && <ScanView />}
+      {tab === "planner" && <DietPlanner />}
       {tab === "pantry" && <Pantry />}
       {tab === "dashboard" && <Dashboard />}
     </div>

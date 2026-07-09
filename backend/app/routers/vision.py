@@ -13,7 +13,7 @@ from fastapi import APIRouter, File, UploadFile
 from app.config.providers import get_detector, get_ocr
 from app.config.settings import get_settings
 from app.schemas.models import DetectionOut, DetectResponse, OcrResponse
-from app.services.nutrition import parse_nutrition
+from app.services.nutrition import detect_script, parse_nutrition
 
 router = APIRouter(tags=["vision"])
 
@@ -51,4 +51,5 @@ async def ocr(image: UploadFile = File(...)) -> OcrResponse:
         text=result.text,
         mean_confidence=round(result.mean_confidence, 3),
         nutrition=facts.as_dict(),
+        language=detect_script(result.text),
     )

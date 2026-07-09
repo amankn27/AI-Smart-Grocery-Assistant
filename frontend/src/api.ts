@@ -118,6 +118,35 @@ export interface RecommendResponse {
   sources: { id: string; score: number }[];
 }
 
+export interface ValueMetric {
+  product_id: string;
+  name: string;
+  brand: string;
+  mrp: number;
+  health_score: number;
+  health_per_rupee: number | null;
+}
+export interface ValueResponse {
+  target: ValueMetric;
+  category: string;
+  category_size: number;
+  price_percentile: number | null;
+  cheapest: ValueMetric | null;
+  best_value: ValueMetric | null;
+  target_is_cheapest: boolean;
+  target_is_best_value: boolean;
+}
+export interface DietPlan {
+  target_kcal: number;
+  total_kcal: number;
+  total_protein_g: number;
+  kcal_gap: number;
+  meets_protein: boolean;
+  items: { product_id: string; name: string; energy_kcal: number; protein_g: number; health_score: number }[];
+  narrative: string;
+  narrative_provider: string;
+}
+
 export interface Tokens {
   access_token: string;
   refresh_token: string;
@@ -149,6 +178,9 @@ export const api = {
     postJSON<RecommendResponse>("/recommend", { product_id, limit }),
   recipe: (opts: { session_id?: string; diet?: string; servings?: number }) =>
     postJSON<{ ingredients: string[]; recipe_text: string; provider: string }>("/recipe", opts),
+  value: (product_id: string) => postJSON<ValueResponse>("/value", { product_id }),
+  dietPlan: (opts: { target_kcal: number; min_protein_g?: number; diet?: string }) =>
+    postJSON<DietPlan>("/diet/plan", opts),
   voice: async (audio: Blob) => {
     const fd = new FormData();
     fd.append("audio", audio, "speech.webm");

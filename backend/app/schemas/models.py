@@ -98,3 +98,4 @@ class OcrResponse(BaseModel):
     text: str
     mean_confidence: float
     nutrition: dict
+    language: str = "en"

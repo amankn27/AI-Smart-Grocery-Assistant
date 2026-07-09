@@ -24,6 +24,7 @@ try:
         gemini_model: str = "gemini-1.5-flash"
 
         ocr_provider: str = "chained"          # chained | paddle | easyocr | null
+        ocr_lang: str = "en"                   # en | hi | ... (Paddle/EasyOCR language code)
         detector_provider: str = "yolo"        # yolo | stub
         yolo_weights: str = "yolov8n.pt"
         detector_conf_threshold: float = 0.25
@@ -65,6 +66,7 @@ except ImportError:  # pragma: no cover - fallback when pydantic-settings absent
             self.gemini_api_key = g("GEMINI_API_KEY")
             self.gemini_model = g("GEMINI_MODEL", "gemini-1.5-flash")
             self.ocr_provider = g("OCR_PROVIDER", "chained")
+            self.ocr_lang = g("OCR_LANG", "en")
             self.detector_provider = g("DETECTOR_PROVIDER", "yolo")
             self.yolo_weights = g("YOLO_WEIGHTS", "yolov8n.pt")
             self.detector_conf_threshold = float(g("DETECTOR_CONF_THRESHOLD", "0.25"))

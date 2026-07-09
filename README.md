@@ -4,14 +4,15 @@ Point a camera at a grocery product → identify it, read the nutrition label, s
 health, and build a running INR bill with GST. A modular, containerized web app built as a
 **vertical slice** (camera → detection → OCR → nutrition → cart → chat), not a demo throwaway.
 
-> **Status: Phases 0–2 complete — 56 tests passing.** The deterministic core (billing,
-> nutrition parsing, health scoring, catalog, gap-fill merge, alternative ranking, analytics,
-> pantry/expiry, recipe assembly) is implemented and unit-tested. Model edges (YOLO,
-> PaddleOCR, Gemini, barcode, embeddings, vector store, Whisper STT, TTS) are wired behind
-> swappable interfaces and degrade gracefully when heavy deps or API keys are absent, so the
-> app boots with zero configuration. Phase 1 adds barcode scanning, RAG healthier-alternatives,
-> JWT auth + history, dashboards and PDF invoices; Phase 2 adds a voice assistant, a recipe
-> generator, and pantry/expiry tracking with reminders.
+> **Status: Phases 0–2 complete + selected Phase 3 items — 68 tests passing.** The
+> deterministic core (billing, nutrition parsing, health scoring, catalog, gap-fill merge,
+> alternative ranking, analytics, pantry/expiry, recipe assembly, price/value, diet planning)
+> is implemented and unit-tested. Model edges (YOLO, PaddleOCR, Gemini, barcode, embeddings,
+> vector store, Whisper STT, TTS) are wired behind swappable interfaces and degrade gracefully
+> when heavy deps or API keys are absent, so the app boots with zero configuration. Phase 1
+> adds barcode scanning, RAG healthier-alternatives, JWT auth + history, dashboards and PDF
+> invoices; Phase 2 adds a voice assistant, recipe generator, and pantry/expiry tracking;
+> Phase 3 adds price/value comparison, a diet planner, and multi-language (Hindi) OCR.
 
 ## Why it's built this way (design principles)
 
@@ -88,6 +89,7 @@ See [`.env.example`](.env.example) for the full list.
 - **Phase 0:** detection · OCR · nutrition parse · cart/GST · chat · minimal UI ✅
 - **Phase 1:** barcode scan · RAG alternatives · JWT auth + history · dashboard · PDF invoice ✅
 - **Phase 2:** voice (Whisper→LLM→TTS) · recipes from cart · pantry/expiry + reminders ✅
-- **Phase 3 (backlog):** multi-language OCR · offline mode · price comparison · diet planner · shared lists
+- **Phase 3 (selected):** price/value comparison · diet planner · multi-language (Hindi) OCR ✅
+  — remaining backlog (offline PWA · coupon detection · shared lists · native mobile · fridge/wearable)
 
-Plans: [Phase 0](docs/PHASE0_PLAN.md) · [Phase 1](docs/PHASE1_PLAN.md) · [Phase 2](docs/PHASE2_PLAN.md).
+Plans: [0](docs/PHASE0_PLAN.md) · [1](docs/PHASE1_PLAN.md) · [2](docs/PHASE2_PLAN.md) · [3](docs/PHASE3_PLAN.md).

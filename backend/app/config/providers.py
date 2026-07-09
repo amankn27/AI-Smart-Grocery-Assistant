@@ -39,6 +39,10 @@ def get_ocr() -> OCREngine:
     s = get_settings()
     from app.providers.ocr.engines import ChainedOCR, EasyOCREngine, NullOCREngine, PaddleOCREngine
 
+    lang = s.ocr_lang
+    # EasyOCR takes a list; include English alongside a non-English script for bilingual labels.
+    easy_langs = [lang] if lang == "en" else [lang, "en"]
+
     def _try(build, label):
         try:
             return build()
@@ -46,16 +50,22 @@ def get_ocr() -> OCREngine:
             logger.info("OCR engine %s not available: %s", label, exc)
             return None
 
+    def _paddle():
+        return PaddleOCREngine(lang=lang)
+
+    def _easy():
+        return EasyOCREngine(langs=easy_langs)
+
     if s.ocr_provider == "paddle":
-        return _try(PaddleOCREngine, "paddle") or NullOCREngine()
+        return _try(_paddle, "paddle") or NullOCREngine()
     if s.ocr_provider == "easyocr":
-        return _try(EasyOCREngine, "easyocr") or NullOCREngine()
+        return _try(_easy, "easyocr") or NullOCREngine()
     if s.ocr_provider == "null":
         return NullOCREngine()
 
     # Default "chained": build whichever engines import successfully, in priority order.
     engines: list[OCREngine] = []
-    for build, label in ((PaddleOCREngine, "paddle"), (EasyOCREngine, "easyocr")):
+    for build, label in ((_paddle, "paddle"), (_easy, "easyocr")):
         eng = _try(build, label)
         if eng is not None:
             engines.append(eng)

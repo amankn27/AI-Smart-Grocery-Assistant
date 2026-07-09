@@ -21,11 +21,13 @@ from app.routers import (
     cart,
     chat,
     dashboard,
+    diet,
     history,
     pantry,
     products,
     recipe,
     recommend,
+    value,
     vision,
     voice,
 )
@@ -79,3 +81,5 @@ app.include_router(dashboard.router)
 app.include_router(pantry.router)
 app.include_router(recipe.router)
 app.include_router(voice.router)
+app.include_router(value.router)
+app.include_router(diet.router)

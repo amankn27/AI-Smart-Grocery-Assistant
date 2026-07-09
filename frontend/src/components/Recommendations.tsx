@@ -1,16 +1,19 @@
 import { useState } from "react";
-import { api, type RecommendResponse } from "../api";
+import { api, type RecommendResponse, type ValueResponse } from "../api";
 
 // Shows healthier same-category alternatives (deterministic ranking) plus the RAG-grounded
-// explanation. Triggered for a known catalog product (e.g. after a barcode match).
+// explanation and a price/value summary. Triggered for a known catalog product.
 export function Recommendations({ productId, productName }: { productId: string; productName: string }) {
   const [data, setData] = useState<RecommendResponse | null>(null);
+  const [value, setValue] = useState<ValueResponse | null>(null);
   const [busy, setBusy] = useState(false);
 
   async function load() {
     setBusy(true);
     try {
-      setData(await api.recommend(productId, 3));
+      const [rec, val] = await Promise.all([api.recommend(productId, 3), api.value(productId)]);
+      setData(rec);
+      setValue(val);
     } finally {
       setBusy(false);
     }
@@ -28,6 +31,15 @@ export function Recommendations({ productId, productName }: { productId: string;
           {busy ? "…" : `Find for ${productName}`}
         </button>
       </div>
+
+      {value && (
+        <div className="mt-3 rounded-lg bg-slate-50 px-3 py-2 text-sm text-slate-600">
+          💰 In {value.category} ({value.category_size}):{" "}
+          {value.cheapest && <>cheapest is <b>{value.cheapest.name}</b> (₹{value.cheapest.mrp}); </>}
+          {value.best_value && <>best value is <b>{value.best_value.name}</b></>}
+          {value.target_is_best_value && " — that's this one 👍"}
+        </div>
+      )}
 
       {data && (
         <div className="mt-3 space-y-3">

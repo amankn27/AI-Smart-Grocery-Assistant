@@ -17,17 +17,22 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 # Canonical fields we try to extract, each with the label variants/misspellings OCR
-# commonly produces and the unit we normalize the value to.
+# commonly produces and the unit we normalize the value to. Hindi (Devanagari) label terms
+# are included so bilingual Indian packaging parses too (Phase 3 multi-language OCR).
 _FIELD_SYNONYMS: dict[str, tuple[str, ...]] = {
-    "energy_kcal": ("energy", "enery", "calories", "calorie", "energ", "kcal"),
-    "protein_g": ("protein", "protien", "proteins"),
-    "fat_g": ("total fat", "fat", "fats", "total fa"),
-    "saturated_fat_g": ("saturated fat", "sat fat", "saturates", "saturated"),
-    "carbohydrate_g": ("carbohydrate", "carbohydrates", "carbs", "carbohydrat", "total carbohydrate"),
-    "sugar_g": ("sugar", "sugars", "total sugar", "of which sugars"),
-    "fiber_g": ("fiber", "fibre", "dietary fiber", "dietary fibre"),
-    "sodium_mg": ("sodium", "sodum", "salt"),
+    "energy_kcal": ("energy", "enery", "calories", "calorie", "energ", "kcal", "ऊर्जा"),
+    "protein_g": ("protein", "protien", "proteins", "प्रोटीन"),
+    "fat_g": ("total fat", "fat", "fats", "total fa", "कुल वसा", "वसा"),
+    "saturated_fat_g": ("saturated fat", "sat fat", "saturates", "saturated", "संतृप्त वसा"),
+    "carbohydrate_g": ("carbohydrate", "carbohydrates", "carbs", "carbohydrat",
+                       "total carbohydrate", "कार्बोहाइड्रेट"),
+    "sugar_g": ("sugar", "sugars", "total sugar", "of which sugars", "शर्करा", "चीनी", "शक्कर"),
+    "fiber_g": ("fiber", "fibre", "dietary fiber", "dietary fibre", "फाइबर", "रेशा"),
+    "sodium_mg": ("sodium", "sodum", "salt", "सोडियम", "नमक"),
 }
+
+# Devanagari digits → ASCII, so values printed in Hindi numerals parse.
+_DEVANAGARI_DIGITS = str.maketrans("०१२३४५६७८९", "0123456789")
 
 # Fields whose canonical unit is grams vs milligrams vs kcal.
 _UNIT_OF: dict[str, str] = {
@@ -89,9 +94,17 @@ class NutritionFacts:
 
 def _normalize_number(token: str) -> Optional[float]:
     try:
-        return float(token.replace(",", "."))
+        return float(token.translate(_DEVANAGARI_DIGITS).replace(",", "."))
     except ValueError:
         return None
+
+
+def detect_script(text: str) -> str:
+    """Cheap language hint: 'hi' if Devanagari is present, else 'en'."""
+    for ch in text:
+        if "ऀ" <= ch <= "ॿ":
+            return "hi"
+    return "en"
 
 
 def _detect_basis(text: str) -> str:
