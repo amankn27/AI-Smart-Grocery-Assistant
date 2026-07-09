@@ -1,0 +1,55 @@
+# One-command local stack (brief §10). `docker compose up --build`.
+# NOTE: not verified in the authoring environment (no Docker on PATH there) — flagged in README.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: grocery
+      POSTGRES_PASSWORD: grocery
+      POSTGRES_DB: grocery
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U grocery"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+      args:
+        INSTALL_VISION: "false"   # set "true" for real YOLO/PaddleOCR (large image)
+    environment:
+      DATABASE_URL: postgresql+psycopg2://grocery:grocery@db:5432/grocery
+      REDIS_URL: redis://redis:6379/0
+      LLM_PROVIDER: ${LLM_PROVIDER:-gemini}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      DETECTOR_PROVIDER: ${DETECTOR_PROVIDER:-stub}
+      OCR_PROVIDER: ${OCR_PROVIDER:-chained}
+      SEED_PRODUCTS_CSV: /app/data/seed/products.csv
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  pgdata:

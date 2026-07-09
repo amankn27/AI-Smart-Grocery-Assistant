@@ -1,0 +1,15 @@
+[project]
+name = "smart-grocery-backend"
+version = "0.1.0"
+description = "Smart Grocery Assistant — FastAPI backend (Phase 0)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+# Make `app` importable when running `pytest` from the backend/ dir.
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"

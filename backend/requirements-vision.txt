@@ -1,0 +1,11 @@
+# Optional heavy vision/OCR stack. Install when you want real detection/OCR:
+#   pip install -r requirements-vision.txt
+# Without these, /detect uses the stub detector and /ocr routes to manual entry —
+# the app still boots and every other endpoint works (graceful degradation, brief §3).
+
+ultralytics>=8.1        # YOLOv8 detection
+paddleocr>=2.7          # primary OCR
+paddlepaddle>=2.6       # PaddleOCR backend
+easyocr>=1.7            # OCR fallback
+numpy>=1.26
+opencv-python-headless>=4.9

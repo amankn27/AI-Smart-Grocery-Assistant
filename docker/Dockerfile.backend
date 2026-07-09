@@ -1,0 +1,23 @@
+# Backend image. Installs the LIGHT core deps by default so the image is small and boots
+# fast; the heavy vision/OCR stack (requirements-vision.txt) is opt-in via a build arg.
+FROM python:3.11-slim
+
+ARG INSTALL_VISION=false
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+
+WORKDIR /app
+
+# System deps only needed if the vision stack is installed (opencv, paddle).
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      libglib2.0-0 libgl1 && rm -rf /var/lib/apt/lists/*
+
+COPY backend/requirements.txt backend/requirements-vision.txt ./
+RUN pip install --no-cache-dir -r requirements.txt && \
+    if [ "$INSTALL_VISION" = "true" ]; then pip install --no-cache-dir -r requirements-vision.txt; fi
+
+COPY backend/ ./backend/
+COPY data/ ./data/
+
+WORKDIR /app/backend
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,14 @@
+# Optional ML deps for Phase 1 edges. Without these the app uses zero-dep fallbacks:
+#   - barcode: pyzbar -> null (manual entry)
+#   - embeddings: sentence-transformers -> hashing embedder (deterministic)
+#   - vector store: chromadb -> in-memory cosine store
+# Install when you want the high-quality versions:
+#   pip install -r requirements-ml.txt
+
+pyzbar>=0.1.9           # barcode/QR decode (needs the native zbar library installed)
+chromadb>=0.5           # persistent vector store
+sentence-transformers>=2.7  # semantic embeddings
+
+# --- Phase 2 voice (optional) ---
+faster-whisper>=1.0   # STT (Whisper)
+gTTS>=2.5             # optional server-side TTS (else browser Web Speech API)

@@ -1,0 +1,54 @@
+product_id,name,brand,barcode,category,mrp,weight_g,energy_kcal,protein_g,fat_g,saturated_fat_g,carbohydrate_g,sugar_g,fiber_g,sodium_mg
+8901719134845,Parle-G Biscuit,Parle,8901719134845,biscuits,30,,454.0,6.9,13.0,6.0,77.3,25.5,,296.0
+8901719134852,Parle G biscuit,Parle,8901719134852,biscuits,30,,3.4,6.9,13.0,6.0,77.3,25.5,0.0,0.0
+8901063139329,bourbon,britannia,8901063139329,biscuits,30,,492.0,4.7,19.9,7.7,73.4,37.0,,
+8906010500764,balaji wafers chataka pataka,Balaji,8906010500764,chips_namkeen,20,,514.0,7.0,25.0,12.0,63.3,2.0,,347.2
+8901063093522,Good Day - Cashew Cookies,Britannia,8901063093522,biscuits,30,,512.0,7.0,24.0,11.0,67.0,22.0,0.0,0.0
+8901764092206,Maaza,Mazza,8901764092206,juice,110,,63.0,0.0,0.0,,15.8,14.9,,24.9
+8901764032707,Sprite,Coca Cola,8901764032707,juice,110,,40.0,0.0,0.0,,10.0,9.8,,14.0
+8902080104581,Pepsi,Pepsi Cola,8902080104581,juice,110,,43.0,0.0,0.0,0.0,10.9,10.9,,3.0
+8901764362804,Pulpy Orange,Minute Maid,8901764362804,juice,110,,52.0,0.0,0.0,0.0,13.1,12.7,0.0,9.6
+8850389100684,Mogu lychee,Sappe Public Company Limited,8850389100684,juice,110,,53.0,0.0,0.0,0.0,13.0,12.0,0.5,20.0
+6111242100992,Perly,Jaouda,6111242100992,milk_dairy,60,,97.0,8.0,3.0,0.0,9.4,9.4,0.0,0.0
+7622202334009,dairy milk,Cadbury,7622202334009,milk_dairy,60,,525.0,6.8,27.9,18.7,62.6,58.8,0.0,107.0
+8901262200196,Amul Masti Spiced Buttermilk 200ml,Amul,8901262200196,milk_dairy,60,,28.5,1.5,1.5,0.95,1.8,1.8,,250.0
+8901262260121,Amul Taaza Milky Milk,Amul,8901262260121,milk_dairy,60,,29.0,1.5,1.5,1.0,2.35,2.35,,20.0
+0020357122682,Milk,Mestla,0020357122682,milk_dairy,60,,,,,,,,,
+8901499008169,Chocos,Kellogg's,8901499008169,cereal,210,,373.0,9.0,3.0,1.2,81.0,27.5,7.0,250.0
+8901491103794,Oats,Pepsico,8901491103794,cereal,210,,407.0,11.8,9.5,1.9,68.5,1.8,10.0,9.5
+8901499010513,"Muesli Fruit, Nut & Seeds",Kellogg's,8901499010513,cereal,210,,,8.1,5.1,0.9,80.0,21.8,6.4,140.0
+8901063014299,vita meri,Britannia,8901063014299,cereal,210,,449.0,7.3,11.4,5.5,79.3,23.6,,255.0
+8904335604150,Yoga Bar Millet Muesli,Yoga Bar,8904335604150,cereal,210,,367.5,9.25,6.25,1.0,73.0,12.25,9.5,281.75
+8901030779282,Green tea honey lemon 25 Tea Bags,Lipton,8901030779282,tea_coffee,155,,,,,,,,,
+8901063325227,Toast Tea Rusk,Britannia,8901063325227,tea_coffee,155,,432.4,9.2,8.0,2.7,80.9,20.3,,213.4
+8901030783241,Lipton Green Tea honey lemon,Lipton,8901030783241,tea_coffee,155,,352.0,5.0,,,83.0,51.0,,0.1
+8901030779640,Lipton GREEN TEA LEMON ZEST,Lipton,8901030779640,tea_coffee,155,,,,,,,,,
+8901030779312,Lipton Green Tea,Pepsico,8901030779312,tea_coffee,155,,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+8906010502232,Balaji wafers panjabi tadka,Balaji,8906010502232,chips_namkeen,20,,608.0,7.7,43.9,20.7,42.3,2.0,6.5,1033.0
+8901491100519,Kurkure,Kurkure,8901491100519,chips_namkeen,20,,557.0,6.0,33.7,7.7,57.7,2.2,0.0,796.0
+8906010500078,Balaji Farali Chivda,Balaji Namkeen,8906010500078,chips_namkeen,20,,589.0,15.2,38.9,14.0,8.0,8.0,7.6,404.0
+8904004400731,Aloo bhujia,Haldiram's,8904004400731,chips_namkeen,20,,569.0,8.68,38.12,16.5,46.1,0.25,3.56,615.0
+8901058005233,Kitkat mini chocolate coated wafer,KitKat,8901058005233,chocolate,80,,438.0,6.4,24.8,24.5,47.4,35.1,0.0,97.4
+0716270001660,Ginger Crystallized In Dark Chocolate,Chocolove,0716270001660,chocolate,80,,500.0,6.67,33.33,20.0,53.33,40.0,10.0,0.0
+8901719105913,parle hide & seek 120g,PARLE,8901719105913,chocolate,80,,479.0,5.9,18.0,9.4,73.4,32.2,0.0,0.0
+8906032018520,Patanjali,,8906032018520,chocolate,80,,,,,,,,,
+8901058000290,maggi,Nestlé,8901058000290,instant_noodles,14,,,,,,,,,
+8901058000306,Maggi noodles masala,Nestlé,8901058000306,instant_noodles,14,,442.86,8.57,18.57,10.0,60.0,1.43,2.86,1028.57
+8901058023787,Maggi 140g,Maggi,8901058023787,instant_noodles,14,,269.0,5.7,12.57,8.29,59.57,1.86,,
+8901058023800,Maggi 2-minute noodles Masala,Maggi,8901058023800,instant_noodles,14,,310.0,6.0,13.0,7.0,43.0,4.0,2.0,970.0
+8901058009729,Masala Veg Atta Noodles,Maggi,8901058009729,instant_noodles,14,,314.0,7.7,10.3,8.5,50.4,2.5,4.5,798.9
+8901764032912,Sprite,Coca-Cola,8901764032912,soft_drink,40,,49.0,0.0,0.0,0.0,12.2,11.7,,10.1
+8901764061257,Diet Coke Can 250ml,Coke,8901764061257,soft_drink,40,,0.0,0.0,0.0,0.0,0.0,0.0,0.0,8.3
+8904043551548,Modern 100% Whole Wheat Bread,Modern,8904043551548,bread,45,,264.44,8.78,2.73,1.33,43.54,3.67,6.4,389.7
+8904043552644,Modern Sandwich Supreme Bread,Modern,8904043552644,bread,45,,254.0,7.9,2.1,1.37,51.0,6.72,,467.0
+8901063338593,100% Whole Wheat Brown Bread,Britannia,8901063338593,bread,45,,245.0,8.3,2.0,0.6,50.7,1.5,4.4,478.6
+8904071700031,Masala Banana Chips,Chheda's,8904071700031,bread,45,,160.0,1.0,11.0,5.0,15.0,0.0,1.0,85.0
+8908009059185,Zero Maida Whole Wheat Bread,The Health Factory,8908009059185,bread,45,,241.4,13.41,1.32,0.2,43.97,4.1,6.31,340.96
+8901248270243,Emami Healthy & Tasty Rice Bran Oil,Emami,8901248270243,cooking_oil,160,,900.0,0.0,100.0,25.0,0.0,,,0.0
+8904256726139,sesame edible cooking oil,big basket royal organic,8904256726139,cooking_oil,160,,899.0,0.0,99.98,14.65,0.0,,,
+8939135663632,"Refined Soyabean oil, Refined Pamoline oil, Refined Sunflower oil, Refined Mustard oil,",Swadful,8939135663632,cooking_oil,160,,,,,,,,,
+8906009532356,CHOCOLAMOND SNACK BAR,MAX PROTEIN,8906009532356,snack_bar,40,,376.0,20.0,13.6,2.4,39.0,1.0,27.4,
+8908005144014,Multigain energy bar,Yoga Bar,8908005144014,snack_bar,40,,391.43,10.86,11.43,3.43,67.14,30.86,11.43,110.0
+8906009531533,Choco Classic Bar,Max Protein,8906009531533,snack_bar,40,,412.0,20.0,15.8,5.8,53.6,15.8,8.0,278.0
+8908005144649,Muesli+ (Fruits + Nuts & Seeds),Yoga Bar,8908005144649,snack_bar,40,,418.0,13.0,9.5,1.9,70.0,4.8,7.4,61.2
+8908005144359,Breakfast protein bar,Yoga Bar,8908005144359,snack_bar,40,,368.89,12.22,8.0,1.56,67.11,16.22,9.78,272.44

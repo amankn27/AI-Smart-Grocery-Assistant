@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Env / secrets
+.env
+*.db
+grocery.db
+
+# Node / frontend
+node_modules/
+frontend/dist/
+
+# Model weights & large artifacts (documented in models/README.md)
+models/*.pt
+models/*.onnx
+*.pth
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# RAG vector store (Chroma persistence)
+.chroma/
