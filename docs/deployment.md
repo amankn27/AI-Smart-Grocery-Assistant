@@ -47,6 +47,26 @@ frontend (static)** on the free tier.
 
 - **Real detection/OCR in prod**: build the backend with `INSTALL_VISION=true` and set
   `DETECTOR_PROVIDER=yolo` / `OCR_PROVIDER=chained` (larger image, slower cold start).
+
+## Enable real OCR locally (EasyOCR)
+
+The default light build routes `/ocr` to the null engine (manual entry). To read real
+nutrition labels from photos on your own machine:
+
+```bash
+cd backend
+pip install "easyocr>=1.7" "opencv-python-headless>=4.9" pyzbar   # ~2GB (pulls torch)
+```
+Then set in `backend/.env`:
+```
+OCR_PROVIDER=easyocr
+OCR_LANG=en          # or "hi" for Hindi/Devanagari labels
+BARCODE_PROVIDER=pyzbar
+```
+The first `/ocr` request downloads EasyOCR's models (~100 MB) and is slow; subsequent scans
+are ~2s. The app forces UTF-8 stdio at startup (`app/main.py`) so EasyOCR's progress bar
+doesn't crash the engine on Windows (cp1252) — no extra env var needed. This stack is too
+heavy for Render's free tier; run it locally or on a paid instance.
 - **DB migrations**: `init_db` create_all runs on startup; Alembic (`backend/alembic/`) is
   available for real migrations (`alembic upgrade head`).
 

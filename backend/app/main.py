@@ -8,7 +8,19 @@ vision/LLM deps are absent (they degrade to fallbacks).
 from __future__ import annotations
 
 import logging
+import sys
 from contextlib import asynccontextmanager
+
+# Force UTF-8 stdio. On Windows the default stdout codec is cp1252, which can't encode the
+# block characters (█) that EasyOCR prints in its model-download progress bar. When stdout is
+# piped to a file (e.g. `uvicorn ... > log`), that raises UnicodeEncodeError *inside* the OCR
+# engine's construction, silently degrading real OCR to the null fallback. Reconfiguring here
+# — before any provider is imported — keeps the vision stack working regardless of launcher.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="backslashreplace")  # type: ignore[union-attr]
+    except (AttributeError, ValueError):  # non-reconfigurable stream (e.g. under some test runners)
+        pass
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
