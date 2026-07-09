@@ -25,12 +25,36 @@ uvicorn app.main:app --reload
 cd frontend && npm install && npm run dev
 ```
 
-## Render / Railway
-- **Backend**: deploy `docker/Dockerfile.backend`. Set `DATABASE_URL` (managed Postgres),
-  `GEMINI_API_KEY`, `DETECTOR_PROVIDER=stub` (or `yolo` with `INSTALL_VISION=true`).
-- **Frontend**: static site from `frontend` (`npm run build`, publish `dist/`), or the nginx
-  image in `docker/Dockerfile.frontend`. Point `/api` at the backend URL.
-- **DB migrations**: Phase 0 uses `create_all` on startup; Alembic is introduced in Phase 1.
+## Render (one-click Blueprint)
+
+The repo ships a `render.yaml` Blueprint that provisions **backend (Docker) + Postgres +
+frontend (static)** on the free tier.
+
+1. Push this repo to GitHub (see below).
+2. Render dashboard → **New → Blueprint** → select the repo. Render reads `render.yaml`.
+3. It creates `grocery-db`, `grocery-backend`, `grocery-frontend` and asks for the secrets
+   marked `sync: false`. Set them in two passes (because each service needs the other's URL):
+   - First deploy → note the backend URL (e.g. `https://grocery-backend.onrender.com`).
+   - Set the frontend's **`VITE_API_BASE`** to that backend URL and redeploy the frontend.
+   - Set the backend's **`CORS_ORIGINS`** to the frontend URL (e.g.
+     `https://grocery-frontend.onrender.com`) and redeploy the backend.
+   - Optionally set **`GEMINI_API_KEY`** on the backend (without it, chat uses the offline echo).
+4. Open the frontend URL — the full app is live.
+
+> This is the **one step I can't do for you**: it needs your Render account. Everything the
+> Blueprint needs is in the repo. Railway is equivalent (Docker service + Postgres plugin +
+> static site; set the same three env vars).
+
+- **Real detection/OCR in prod**: build the backend with `INSTALL_VISION=true` and set
+  `DETECTOR_PROVIDER=yolo` / `OCR_PROVIDER=chained` (larger image, slower cold start).
+- **DB migrations**: `init_db` create_all runs on startup; Alembic (`backend/alembic/`) is
+  available for real migrations (`alembic upgrade head`).
+
+## Measure (Definition of Done §8)
+```bash
+python data/eval/run_eval.py      # OCR-parser accuracy + endpoint latency, real numbers
+```
+See [RESULTS.md](RESULTS.md) for the latest measured figures.
 
 ## Health & smoke check
 ```bash

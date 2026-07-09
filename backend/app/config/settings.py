@@ -56,6 +56,9 @@ try:
         currency: str = "INR"
         locale: str = "en_IN"
 
+        # --- CORS (comma-separated allowed origins for the frontend) ---
+        cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
+
 except ImportError:  # pragma: no cover - fallback when pydantic-settings absent
     class Settings:  # type: ignore[no-redef]
         def __init__(self) -> None:
@@ -87,6 +90,7 @@ except ImportError:  # pragma: no cover - fallback when pydantic-settings absent
             self.seed_products_csv = g("SEED_PRODUCTS_CSV", "data/seed/products.csv")
             self.currency = g("CURRENCY", "INR")
             self.locale = g("LOCALE", "en_IN")
+            self.cors_origins = g("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
 
 
 @lru_cache

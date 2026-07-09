@@ -21,6 +21,8 @@ jobs:
       - name: Run tests (deterministic core + API)
         working-directory: backend
         run: pytest -q
+      - name: Eval gate (OCR-parser accuracy + latency)
+        run: python data/eval/run_eval.py
 
   frontend:
     runs-on: ubuntu-latest

@@ -1,5 +1,6 @@
-// Thin API client. All calls go through the Vite proxy at /api → FastAPI backend.
-const BASE = "/api";
+// Thin API client. In dev, "/api" is proxied to the backend by Vite; in production set
+// VITE_API_BASE to the backend's public URL at build time (see docs/deployment.md).
+const BASE = (import.meta.env.VITE_API_BASE as string | undefined) || "/api";
 
 // --- Auth token (persisted) ---
 let authToken: string | null = typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;

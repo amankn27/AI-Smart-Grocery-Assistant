@@ -1,0 +1,12 @@
+{"id": "clean_biscuit", "text": "Nutrition Facts per 100g\nEnergy 480 kcal\nProtein 7.2 g\nTotal Fat 24 g\nCarbohydrate 60 g\nSugar 22 g\nSodium 450 mg", "truth": {"energy_kcal": 480, "protein_g": 7.2, "fat_g": 24, "carbohydrate_g": 60, "sugar_g": 22, "sodium_mg": 450}}
+{"id": "ocr_misspelled", "text": "Enery 200 kcal\nProtien 5 g\nCarbohydrat 30 g\nSugars 12 g\nSodum 300 mg", "truth": {"energy_kcal": 200, "protein_g": 5, "carbohydrate_g": 30, "sugar_g": 12, "sodium_mg": 300}}
+{"id": "comma_decimal", "text": "Energy 350 kcal\nProtein 7,5 g\nTotal Fat 12,3 g\nSugar 4,0 g", "truth": {"energy_kcal": 350, "protein_g": 7.5, "fat_g": 12.3, "sugar_g": 4.0}}
+{"id": "salt_to_sodium", "text": "Energy 250 kcal\nProtein 6 g\nSalt 1 g", "truth": {"energy_kcal": 250, "protein_g": 6, "sodium_mg": 400}}
+{"id": "kj_energy", "text": "Energy 2000 kj\nProtein 10 g\nCarbohydrate 40 g", "truth": {"energy_kcal": 478.0, "protein_g": 10, "carbohydrate_g": 40}}
+{"id": "hindi_label", "text": "ऊर्जा 480 kcal\nप्रोटीन 7 g\nशर्करा 22 g\nसोडियम 450 mg", "truth": {"energy_kcal": 480, "protein_g": 7, "sugar_g": 22, "sodium_mg": 450}}
+{"id": "high_fibre_cereal", "text": "Per 100 g\nEnergy 360 kcal\nProtein 11 g\nTotal Fat 6 g\nCarbohydrate 62 g\nDietary Fibre 9 g\nSugar 5 g\nSodium 250 mg", "truth": {"energy_kcal": 360, "protein_g": 11, "fat_g": 6, "carbohydrate_g": 62, "fiber_g": 9, "sugar_g": 5, "sodium_mg": 250}}
+{"id": "soft_drink", "text": "Energy 42 kcal\nCarbohydrate 10.6 g\nSugar 10.6 g\nSodium 10 mg", "truth": {"energy_kcal": 42, "carbohydrate_g": 10.6, "sugar_g": 10.6, "sodium_mg": 10}}
+{"id": "noisy_spacing", "text": "ENERGY    520  kcal\nPROTEIN : 4 g\nTOTAL  FAT  30 g\nSATURATED FAT 14 g\nSUGAR  45 g\nSODIUM  800 mg", "truth": {"energy_kcal": 520, "protein_g": 4, "fat_g": 30, "saturated_fat_g": 14, "sugar_g": 45, "sodium_mg": 800}}
+{"id": "oats", "text": "Nutritional Information per 100g\nEnergy 380 kcal\nProtein 13 g\nFat 7 g\nCarbohydrates 60 g\nDietary Fiber 10 g\nSugars 1 g", "truth": {"energy_kcal": 380, "protein_g": 13, "fat_g": 7, "carbohydrate_g": 60, "fiber_g": 10, "sugar_g": 1}}
+{"id": "milk", "text": "Energy 62 kcal\nProtein 3.2 g\nFat 3.5 g\nCarbohydrate 4.7 g\nSugar 4.7 g", "truth": {"energy_kcal": 62, "protein_g": 3.2, "fat_g": 3.5, "carbohydrate_g": 4.7, "sugar_g": 4.7}}
+{"id": "devanagari_numerals", "text": "प्रोटीन ७ g\nशर्करा २२ g", "truth": {"protein_g": 7, "sugar_g": 22}}

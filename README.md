@@ -85,6 +85,17 @@ See [`.env.example`](.env.example) for the full list.
 - Auth, RAG recommendations, barcode camera scanning, dashboards, PDF invoice → **Phase 1**.
   Voice, recipes, pantry → **Phase 2**. (See [docs/PHASE0_PLAN.md](docs/PHASE0_PLAN.md).)
 
+## Definition of Done (brief §10)
+
+| Criterion | Status |
+|---|---|
+| `docker compose up` brings the stack up | ✅ written (unverified locally — no Docker in dev env) |
+| Full user path works end-to-end from the UI | ✅ (Scan / Planner / Pantry / Dashboard) |
+| Tests pass in CI (unit + API + eval gate) | ✅ 68 tests + eval harness in CI |
+| Docs: architecture, API, deployment, `.env.example` | ✅ `docs/` + `.env.example` |
+| Live deployment URL | ⏳ one-click `render.yaml` ready — **needs your cloud account** |
+| Accuracy & latency reported (real numbers) | ✅ OCR-parser 1.000, p95 ≤ 6 ms — see [RESULTS.md](docs/RESULTS.md); detection mAP N/A (needs weights+images) |
+
 ## Roadmap
 - **Phase 0:** detection · OCR · nutrition parse · cart/GST · chat · minimal UI ✅
 - **Phase 1:** barcode scan · RAG alternatives · JWT auth + history · dashboard · PDF invoice ✅
