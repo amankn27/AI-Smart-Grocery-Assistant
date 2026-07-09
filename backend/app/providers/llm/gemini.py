@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 class GeminiLLM(LLMProvider):
     name = "gemini"
 
-    def __init__(self, api_key: str, model: str = "gemini-1.5-flash", *, timeout: float = 20.0) -> None:
+    def __init__(self, api_key: str, model: str = "gemini-2.5-flash", *, timeout: float = 20.0) -> None:
         # Lazy import: only required when this provider is actually selected.
         import google.generativeai as genai
 

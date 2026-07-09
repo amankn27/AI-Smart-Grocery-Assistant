@@ -21,7 +21,7 @@ try:
         # --- Providers (swappable) ---
         llm_provider: str = "gemini"           # gemini | echo
         gemini_api_key: str | None = None
-        gemini_model: str = "gemini-1.5-flash"
+        gemini_model: str = "gemini-2.5-flash"
 
         ocr_provider: str = "chained"          # chained | paddle | easyocr | null
         ocr_lang: str = "en"                   # en | hi | ... (Paddle/EasyOCR language code)
@@ -67,7 +67,7 @@ except ImportError:  # pragma: no cover - fallback when pydantic-settings absent
             self.environment = g("ENVIRONMENT", "development")
             self.llm_provider = g("LLM_PROVIDER", "gemini")
             self.gemini_api_key = g("GEMINI_API_KEY")
-            self.gemini_model = g("GEMINI_MODEL", "gemini-1.5-flash")
+            self.gemini_model = g("GEMINI_MODEL", "gemini-2.5-flash")
             self.ocr_provider = g("OCR_PROVIDER", "chained")
             self.ocr_lang = g("OCR_LANG", "en")
             self.detector_provider = g("DETECTOR_PROVIDER", "yolo")
