@@ -50,7 +50,8 @@ cd frontend && npm install && npm run dev            # http://localhost:5173
 ## Layout
 ```
 backend/    FastAPI app — routers, deterministic services, provider interfaces, db
-frontend/   React + TS + Tailwind (camera, nutrition panel, cart, chat)
+frontend/   React + TS + Tailwind — tabs: Scan (camera/nutrition/cart/chat/voice/recipe),
+            Pantry (expiry tracking), Dashboard (analytics); JWT auth bar
 data/seed/  Open Food Facts (India) subset + reproducible build_seed.py  (53 products)
 data/eval/  accuracy/latency harness + targets
 docker/     Dockerfiles + nginx config

@@ -50,5 +50,5 @@ null-provider paths).
   client text input + browser Web Speech API, so `/voice` works with zero server deps.
 - Reminders are pull-based (`/pantry/reminders`); scheduled push/cron notifications are a
   documented follow-up (would need Celery/APScheduler + a channel).
-- Frontend: voice assistant + recipe-from-cart wired; pantry UI (needs auth screens) is the
-  remaining UI polish — the pantry API is fully tested.
+- Frontend: voice assistant + recipe-from-cart wired, and the **pantry UI** (add/list/delete
+  with color-coded expiry status + reminder banner) is complete behind the auth flow.

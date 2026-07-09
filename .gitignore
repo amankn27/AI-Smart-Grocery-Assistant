@@ -29,3 +29,6 @@ Thumbs.db
 
 # RAG vector store (Chroma persistence)
 .chroma/
+
+# TS incremental build info
+*.tsbuildinfo

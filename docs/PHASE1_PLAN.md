@@ -56,5 +56,6 @@ deterministic), plus API tests for `/barcode` and `/recommend` (importorskip hea
   the tested default. Full OAuth redirect handling is a small follow-up.
 - Migrations: `init_db` create_all is the dev path; Alembic is wired (`backend/alembic/`) for
   real migrations (`alembic revision --autogenerate`).
-- Frontend: barcode scan + healthier-options panel wired; auth screens + dashboard charts are
-  the remaining UI polish (backend fully covered).
+- Frontend: barcode scan + healthier-options panel, **auth (login/register/logout)**, and the
+  **dashboard** (spend/calories/avg-health + category-mix bars) are all wired. Scans are
+  recorded to history on barcode match when signed in.
