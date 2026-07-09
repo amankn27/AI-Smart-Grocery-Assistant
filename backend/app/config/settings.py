@@ -32,6 +32,10 @@ try:
 
         # --- Phase 1 providers ---
         barcode_provider: str = "pyzbar"       # pyzbar | null
+        # Open Food Facts fallback for barcodes not in the seed catalog (~3M real products).
+        off_enabled: bool = True
+        off_base_url: str = "https://world.openfoodfacts.org"
+        off_timeout: float = 6.0
         embeddings_provider: str = "hashing"   # sentence_transformers | hashing
         vector_store: str = "memory"           # chroma | memory
         rag_corpus_path: str = "data/rag/corpus.jsonl"
@@ -75,6 +79,9 @@ except ImportError:  # pragma: no cover - fallback when pydantic-settings absent
             self.detector_conf_threshold = float(g("DETECTOR_CONF_THRESHOLD", "0.25"))
             self.low_confidence_threshold = float(g("LOW_CONFIDENCE_THRESHOLD", "0.40"))
             self.barcode_provider = g("BARCODE_PROVIDER", "pyzbar")
+            self.off_enabled = g("OFF_ENABLED", "true").lower() not in ("0", "false", "no")
+            self.off_base_url = g("OFF_BASE_URL", "https://world.openfoodfacts.org")
+            self.off_timeout = float(g("OFF_TIMEOUT", "6.0"))
             self.embeddings_provider = g("EMBEDDINGS_PROVIDER", "hashing")
             self.vector_store = g("VECTOR_STORE", "memory")
             self.rag_corpus_path = g("RAG_CORPUS_PATH", "data/rag/corpus.jsonl")

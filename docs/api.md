@@ -19,8 +19,8 @@ Base URL: `http://localhost:8000`. Interactive docs at `/docs` (Swagger) when ru
 ### Phase 1
 | Method | Path | Purpose | Auth |
 |---|---|---|---|
-| POST | `/barcode` | Image → decoded EAN/UPC/QR → catalog product | — |
-| POST | `/barcode/lookup` | Manual barcode entry → product | — |
+| POST | `/barcode` | Image → decoded EAN/UPC/QR → product (seed catalog, then Open Food Facts) | — |
+| POST | `/barcode/lookup` | Manual barcode entry → product (seed catalog, then Open Food Facts) | — |
 | POST | `/recommend` | Product → healthier alternatives + RAG explanation | — |
 | POST | `/auth/register` | Create account → access+refresh tokens | — |
 | POST | `/auth/login` | OAuth2 password login → tokens | — |
